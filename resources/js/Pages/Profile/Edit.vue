@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
     mustVerifyEmail: {
@@ -40,6 +40,8 @@ defineProps({
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <DeleteUserForm class="max-w-xl" />
                 </div>
+
+                <Link as="button" method="POST" :href="route('token.create')" class='bg-sky-500 w-full my-4 px-2 py-3 shadow-lg'>CRIAR TOKEN</Link>
             </div>
         </div>
     </AuthenticatedLayout>
