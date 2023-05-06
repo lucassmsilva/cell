@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function index(Request $request){
-        return response()->json(Users::all(), 200);
+        return response()->json(User::all(), 200);
     }
     public function store(Request $request){
         return response()->json('Em construção', 400);
