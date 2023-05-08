@@ -21,21 +21,27 @@ defineProps({
 
 <template>
     <Head title="Welcome" />
+    <div class="h-screen w-full bg-stone-100 dark:bg-slate-600">
 
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
+    
+    <transition
+        enter-from-class="-translate-x-10 opacity-0"
+        enter-active-class="transition duration-150 ease-in-out transform"
+        enter-to-class="translate-x-0 opacity-100"
+        leave-from-class="translate-x-0 opacity-100"
+        leave-active-class="transition duration-150 ease-in-out transform"
+        leave-to-class="-translate-x-10 opacity-0"
     >
-        
-    </div>
-</template>
+        <nav v-if="menuVisible" class="h-full lg:sticky top-0 flex w-full lg:w-[226px] absolute flex-col border-r border-stone-300 shadow-[1px_0_10px_2px_rgba(0,0,0,0.1)] dark:bg-gray-700 dark:border-gray-700 bg-stone-200 z-50">
+        NAV
+        </nav>
 
-<style>
-.bg-dots-darker {
-    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-    .dark\:bg-dots-lighter {
-        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-    }
-}
-</style>
+        <main class="flex flex-col w-3/4 flex-1 h-screen dark:bg-slate-800 bg-stone-100 relative">
+            CHAVE
+        </main>
+    </transition>
+
+
+    </div>
+
+</template>
