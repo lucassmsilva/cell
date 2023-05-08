@@ -11,6 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    sexo: ''
 });
 
 const submit = () => {
@@ -84,6 +85,20 @@ const submit = () => {
                 />
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="password_confirmation" value="Sexo" />
+
+                <TextInput
+                    id="sexo"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.sexo"
+                    required
+                />
+
+                <InputError class="mt-2" :message="form.errors.sexo" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
