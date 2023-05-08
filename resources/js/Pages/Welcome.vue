@@ -21,27 +21,26 @@ defineProps({
 
 <template>
     <Head title="Welcome" />
-    <div class="h-screen w-full bg-stone-100 dark:bg-slate-600">
+    <div class="flex h-screen w-full bg-stone-100 dark:bg-slate-600">
+        <div class="w-full bg-gradient-to-br from-sky-900 to-indigo-500 flex items-center justify-center">
+            <div class="w-full px-2 space-y-2 flex flex-col items-center lg:w-1/3">
 
-    
-    <transition
-        enter-from-class="-translate-x-10 opacity-0"
-        enter-active-class="transition duration-150 ease-in-out transform"
-        enter-to-class="translate-x-0 opacity-100"
-        leave-from-class="translate-x-0 opacity-100"
-        leave-active-class="transition duration-150 ease-in-out transform"
-        leave-to-class="-translate-x-10 opacity-0"
-    >
-        <nav v-if="menuVisible" class="h-full lg:sticky top-0 flex w-full lg:w-[226px] absolute flex-col border-r border-stone-300 shadow-[1px_0_10px_2px_rgba(0,0,0,0.1)] dark:bg-gray-700 dark:border-gray-700 bg-stone-200 z-50">
-        NAV
-        </nav>
+                <div class="w-[300px] h-[200px] border border-white text-center">
+                LOGO
+                </div>
 
-        <main class="flex flex-col w-3/4 flex-1 h-screen dark:bg-slate-800 bg-stone-100 relative">
-            CHAVE
-        </main>
-    </transition>
+                <div class="w-full flex flex-col space-y-2">
 
+                <button type="button" class="rounded-lg p-2 bg-stone-200 shadow-lg leading">
+                    ENTRAR
+                </button>
 
+                <button type="button" class="rounded-lg p-2 bg-stone-200 shadow-lg leading">
+                    REGISTRAR
+                </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </template>
