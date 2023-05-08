@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('celulas', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->unsignedBigInteger('lider_id');
-            $table->unsignedBigInteger('pastor_id');
+            $table->string('nome', 255);
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('lider_id')->nullable();
+            $table->unsignedBigInteger('discipulador_id')->nullable();
+            $table->unsignedBigInteger('pastor_id')->nullable();
+            $table->unsignedBigInteger('predio_id')->nullable();
+            $table->timestamp('data_nascimento');
             $table->timestamps();
+            $table->foreign('parent_id')->references('id')->on('celulas');
             $table->foreign('lider_id')->references('id')->on('users');
+            $table->foreign('discipulador_id')->references('id')->on('users');
             $table->foreign('pastor_id')->references('id')->on('users');
+            $table->foreign('predio_id')->references('id')->on('predios');
         });
     }
 
