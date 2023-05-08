@@ -6,7 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CelulaController;
 use App\Http\Controllers\PredioController;
 /*
-
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -21,8 +20,19 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/user', function (Request $request) {
         return response()->json($request->user());
     });
-    Route::resource('users', 'App\Http\Controllers\UserController')->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('celulas', 'App\Http\Controllers\CelulaController')->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('predios', 'App\Http\Controllers\PredioController')->only(['index', 'store', 'update', 'destroy']);
+    Route::post('users/store', [UserController::class, 'store']);
+    Route::get('users/index', [UserController::class, 'index']);
+    Route::put('users/update/{id}', [UserController::class, 'update']);
+    Route::delete('users/destroy/{id}', [UserController::class, 'destroy']);
+
+    Route::post('celulas/store', [CelulaController::class, 'store']);
+    Route::get('celulas/index', [CelulaController::class, 'index']);
+    Route::put('celulas/update/{id}', [CelulaController::class, 'update']);
+    Route::delete('celulas/destroy/{id}', [CelulaController::class, 'destroy']);
+
+    Route::post('predios/store', [PredioController::class, 'store']);
+    Route::get('predios/index', [PredioController::class, 'index']);
+    Route::put('predios/update/{id}', [PredioController::class, 'update']);
+    Route::delete('predios/destroy/{id}', [PredioController::class, 'destroy']);
 });
 
