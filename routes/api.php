@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CelulaController;
+use App\Http\Controllers\PredioController;
 /*
 
 |--------------------------------------------------------------------------
@@ -20,8 +21,8 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/user', function (Request $request) {
         return response()->json($request->user());
     });
-    Route::resource('users', UserController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('celulas', CelulaController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('predios', CelulaController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('users', 'App\Http\Controllers\UserController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('celulas', 'App\Http\Controllers\CelulaController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('predios', 'App\Http\Controllers\PredioController')->only(['index', 'store', 'update', 'destroy']);
 });
 
