@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function (){
     });
 
     Route::get('users/index', [UserController::class, 'index']);
-    Route::post('users/tore', [UserController::class, 'store']);
+    Route::post('users/store', [UserController::class, 'store']);
     Route::put('users/{id}/update', [UserController::class, 'update']);
 });
 

@@ -14,7 +14,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required'],
             'sexo' => 'required|min:1|max:1'
         ]);
 
@@ -26,7 +26,7 @@ class UserController extends Controller
         ]);
 
         if ($user){
-            event(new Registered($user));
+            // event(new Registered($user));
             return response()->json('Sucesso', 200);
         }
 
