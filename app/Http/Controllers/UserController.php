@@ -28,7 +28,7 @@ class UserController extends Controller
 
         if ($user){
             // event(new Registered($user));
-            return response()->json('Sucesso', 200);
+            return response()->json("Sucesso ao criar o usuário ID: $user->id", 200);
         }
 
         return response()->json('Ocorreu um erro', 500);
@@ -38,12 +38,20 @@ class UserController extends Controller
 
         if ($user){
             $user->update($request->all());
-            return response()->json('Sucesso', 200);
+            return response()->json("Sucesso ao atualizar o usuário $id", 200);
         }
 
-        return response()->json('Ocorreu um erro', 500);;
+        return response()->json('Ocorreu um erro', 500);
     }
     public function destroy($id){
-        return response()->json('Em construção', 400);
+        $user = User::findOrFail($id);
+
+        $deleted = $user->delete() ? true : false;
+
+        if($deleted){
+            return response()->json("Sucesso ao remover o usuário $id", 200);
+        }
+
+        return response()->json('Ocorreu um erro', 500);
     }
 }

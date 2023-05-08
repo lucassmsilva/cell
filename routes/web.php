@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ImportacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,7 @@ Route::middleware('auth')->group(function () {
         return ['token' => $token->plainTextToken];
     })->name('token.create');
 });
+
+Route::get('/xml', [ImportacaoController::class, 'index']);
 
 require __DIR__.'/auth.php';

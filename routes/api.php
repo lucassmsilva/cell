@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CelulaController;
 /*
+
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -18,9 +20,8 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/user', function (Request $request) {
         return response()->json($request->user());
     });
-
-    Route::get('users/index', [UserController::class, 'index']);
-    Route::post('users/store', [UserController::class, 'store']);
-    Route::put('users/{id}/update', [UserController::class, 'update']);
+    Route::resource('users', UserController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('celulas', CelulaController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('predios', CelulaController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
