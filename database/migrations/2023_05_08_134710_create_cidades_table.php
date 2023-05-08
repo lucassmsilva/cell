@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('cidades', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estado_id');
+            $table->integer('ddd');
             $table->timestamps();
         });
     }
