@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->timestamp('data_batismo')->nullable();
             $table->timestamp('data_nascimento')->nullable();
-            $table->char('sexo');
+            $table->char('sexo')->default('M');
             $table->timestamps();
             $table->rememberToken();
         });
