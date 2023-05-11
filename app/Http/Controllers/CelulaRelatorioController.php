@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Celula;
 use App\Models\CelulaRelatorio;
 
-class CelulaRelatoriosController extends Controller
+class CelulaRelatorioController extends Controller
 {
     /**
      * Display a listing of the resource.
