@@ -40,7 +40,7 @@ class CelulaRelatorioController extends Controller
             'valor_oferta' => 'required|numeric',
             'tipo' => 'required|string',
             'observacoes' => 'nullable|string'
-        ])->validate();
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
