@@ -32,7 +32,7 @@ class PredioController extends Controller
         $rules = [
             'nome' => 'required|string|max:255',
             'endereco' => 'required',
-        ]
+        ];
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
