@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Celula;
 use App\Models\CelulaRelatorio;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CelulaRelatorioController extends Controller
 {
