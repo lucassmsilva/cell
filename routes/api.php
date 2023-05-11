@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CelulaController;
 use App\Http\Controllers\PredioController;
 use App\Http\Controllers\CelulaRelatorioController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
