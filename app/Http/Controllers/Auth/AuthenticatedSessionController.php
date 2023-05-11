@@ -32,10 +32,10 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         if(Str::startsWith(request()->path(), 'api')){
-            $token = Auth::user()->createToken($request->device_name??'APITOKEN');
+            $token =$request->user()->createToken($request->device_name??'APITOKEN');
      
             return response()->json([
-                'user' => Auth::user(),
+                'user' =>$request->user(),
                 'token' => $token->plainTextToken,
         ], 200);
         }
