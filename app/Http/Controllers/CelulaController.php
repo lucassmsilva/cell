@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Celula;
+use Illuminate\Support\Facades\Validator;
 
 class CelulaController extends Controller
 {
@@ -28,7 +29,7 @@ class CelulaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'nome' => 'required|string|max:255',
             'predio_id' => 'required|exists:predios,id',
             'data_nascimento' => 'required|date:Y-m-d H:i:s',
@@ -37,6 +38,12 @@ class CelulaController extends Controller
             'pastor_id' => 'required|exists:user,id',
             'parent_id' => 'nullable|exists:celulas,id'
         ]);
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()]);
+        }
 
         $user = Celula::create($request->all());
 

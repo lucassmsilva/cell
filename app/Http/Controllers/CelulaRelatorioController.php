@@ -30,7 +30,7 @@ class CelulaRelatorioController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $rules =  [
             'celula_id' => 'required|exists:celulas,id',
             'equipe' => 'required|numeric',
             'membros' => 'required|numeric',
@@ -40,7 +40,9 @@ class CelulaRelatorioController extends Controller
             'valor_oferta' => 'required|numeric',
             'tipo' => 'required|string',
             'observacoes' => 'nullable|string'
-        ]);
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
