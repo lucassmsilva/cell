@@ -37,7 +37,7 @@ class CelulaController extends Controller
             'discipulador_id' => 'required|exists:user,id',
             'pastor_id' => 'required|exists:user,id',
             'parent_id' => 'nullable|exists:celulas,id'
-        ]);
+        ];
 
         $validator = Validator::make($request->all(), $rules);
 
