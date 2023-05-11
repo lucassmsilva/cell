@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Celula;
 use App\Models\CelulaRelatorio;
+use Illuminate\Validation\Validator;
 
 class CelulaRelatorioController extends Controller
 {
@@ -29,7 +30,7 @@ class CelulaRelatorioController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        Validator::make($request->all(), [
             'celula_id' => 'required|exists:celulas,id',
             'equipe' => 'required|numeric',
             'membros' => 'required|numeric',
@@ -39,7 +40,7 @@ class CelulaRelatorioController extends Controller
             'valor_oferta' => 'required|numeric',
             'tipo' => 'required|string',
             'observacoes' => 'nullable|string'
-        ]);
+        ])->validate();
 
         $user = CelulaRelatorio::create($request->all());
 
