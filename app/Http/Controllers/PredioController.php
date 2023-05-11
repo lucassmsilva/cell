@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Predio;
+use Illuminate\Support\Facades\Validator;
 
 class PredioController extends Controller
 {
@@ -28,10 +29,16 @@ class PredioController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'nome' => 'required|string|max:255',
             'endereco' => 'required',
-        ]);
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()]);
+        };
 
         $user = Predio::create($request->all());
 

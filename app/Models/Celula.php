@@ -18,4 +18,8 @@ class Celula extends Model
         'data_nascimento',
         'parent_id'
     ];
+
+    public function relatorios(){
+        return $this->hasMany(CelulaRelatorio::class);
+    }
 }

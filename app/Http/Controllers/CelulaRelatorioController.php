@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Celula;
+use App\Models\CelulaRelatorio;
 use Illuminate\Support\Facades\Validator;
 
-class CelulaController extends Controller
+class CelulaRelatorioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return response()->json(Celula::all(), 200);
+        return response()->json(CelulaRelatorio::all(), 200);
     }
 
     /**
@@ -29,14 +30,16 @@ class CelulaController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'nome' => 'required|string|max:255',
-            'predio_id' => 'required|exists:predios,id',
-            'data_nascimento' => 'required|date:Y-m-d H:i:s',
-            'lider_id' => 'required|exists:user,id',
-            'discipulador_id' => 'required|exists:user,id',
-            'pastor_id' => 'required|exists:user,id',
-            'parent_id' => 'nullable|exists:celulas,id'
+        $rules =  [
+            'celula_id' => 'required|exists:celulas,id',
+            'equipe' => 'required|numeric',
+            'membros' => 'required|numeric',
+            'visitantes' => 'required|numeric',
+            'frequentadores' => 'required|numeric',
+            'data' => 'required|date:Y-m-d H:i:s',
+            'valor_oferta' => 'required|numeric',
+            'tipo' => 'required|string',
+            'observacoes' => 'nullable|string'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -45,7 +48,7 @@ class CelulaController extends Controller
             return response()->json(['errors'=>$validator->errors()]);
         }
 
-        $user = Celula::create($request->all());
+        $user = CelulaRelatorio::create($request->all());
 
         if ($user){
             // event(new Registered($user));
@@ -76,7 +79,7 @@ class CelulaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $set = Celula::findOrFail($id);
+        $set = CelulaRelatorio::findOrFail($id);
 
         if ($set){
             $set->update($request->all());
@@ -91,7 +94,7 @@ class CelulaController extends Controller
      */
     public function destroy(string $id)
     {
-        $set = Celula::findOrFail($id);
+        $set = CelulaRelatorio::findOrFail($id);
 
         $deleted = $set->delete() ? true : false;
 

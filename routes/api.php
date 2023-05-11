@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CelulaController;
 use App\Http\Controllers\PredioController;
+use App\Http\Controllers\CelulaRelatorioController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,5 +36,11 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('predios/index', [PredioController::class, 'index']);
     Route::put('predios/update/{id}', [PredioController::class, 'update']);
     Route::delete('predios/destroy/{id}', [PredioController::class, 'destroy']);
+
+
+    Route::post('relatorios/store', [CelulaRelatorioController::class, 'store']);
+    Route::get('relatorios/index', [CelulaRelatorioController::class, 'index']);
+    Route::put('relatorios/update/{id}', [CelulaRelatorioController::class, 'update']);
+    Route::delete('relatorios/destroy/{id}', [CelulaRelatorioController::class, 'destroy']);
 });
 
