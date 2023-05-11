@@ -34,6 +34,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if(Str::startsWith(request()->path(), 'api')){
+            $token = Auth::user()->createToken($request->device_name??'APITOKEN');
+     
+            return response()->json([
+                'user' => Auth::user(),
+                'token' => $token->plainTextToken,
+        ], 200);
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\PredioController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('/user', function (Request $request) {
