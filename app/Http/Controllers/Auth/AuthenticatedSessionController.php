@@ -31,9 +31,6 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
-        $request->session()->regenerate();
-
         if(Str::startsWith(request()->path(), 'api')){
             $token = Auth::user()->createToken($request->device_name??'APITOKEN');
      
@@ -42,6 +39,8 @@ class AuthenticatedSessionController extends Controller
                 'token' => $token->plainTextToken,
         ], 200);
         }
+
+        $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
