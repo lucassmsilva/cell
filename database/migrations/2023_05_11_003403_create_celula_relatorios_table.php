@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('celula_relatorios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('celula_id');
-            $table->int('equipe');
-            $table->int('membros');
-            $table->int('visitantes');
-            $table->int('frequentadores');
+            $table->integer('equipe');
+            $table->integer('membros');
+            $table->integer('visitantes');
+            $table->integer('frequentadores');
             $table->timestamp('data');
             $table->double('valor_oferta');
             $table->char('tipo')->default('C');
