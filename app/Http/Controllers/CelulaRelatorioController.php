@@ -12,9 +12,22 @@ class CelulaRelatorioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(CelulaRelatorio::all(), 200);
+        $sets = CelulaRelatorio::where(function ($query) use($request){
+            if ($request->sexo){
+                $query->where('celula_id', $request->celula_id);
+            }
+            if ($request->inicio){
+                $query->where('data', '>=', $request->inicio);
+            }
+            if ($request->fim){
+                $query->where('data', '<=', $request->fim);
+            }
+            return $query;
+        })->get();
+
+        return response()->json($sets, 200);
     }
 
     /**

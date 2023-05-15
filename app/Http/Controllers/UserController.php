@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index(Request $request){
+
+        $users = User::where(function ($query) use($request){
+            if ($request->name){
+                $query->whereRaw('name LIKE ?', formataWhereLike($request->name));
+            }
+            if ($request->email){
+                $query->whereRaw('email LIKE ?', formataWhereLike($request->email));
+            }
+            if ($request->sexo){
+                $query->where('sexo', $request->sexo);
+            }
+            return $query;
+        })->get();
+
         return response()->json(User::all(), 200);
     }
     public function store(Request $request){

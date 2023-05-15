@@ -13,7 +13,35 @@ class CelulaController extends Controller
      */
     public function index()
     {
-        return response()->json(Celula::all(), 200);
+        $sets = Celula::where(function ($query) use($request){
+            if ($request->name){
+                $query->whereRaw('nome LIKE ?', formataWhereLike($request->nome));
+            }
+            if ($request->lider_id){
+                $query->where('lider_id', $request->lider_id);
+            }
+            if ($request->predio_id){
+                $query->where('predio_id', $request->predio_id);
+            }
+            if ($request->pastor_id){
+                $query->where('pastor_id', $request->pastor_id);
+            }
+            if ($request->discipulador_id){
+                $query->where('discipulador_id', $request->discipulador_id);
+            }
+            if ($request->parent_id){
+                $query->where('parent_id', $request->parent_id);
+            }
+            if ($request->inicio){
+                $query->where('data_nascimento', '>=', $request->inicio);
+            }
+            if ($request->fim){
+                $query->where('data_nascimento', '<=', $request->fim);
+            }
+            return $query;
+        })->get();
+
+        return response()->json($sets, 200);
     }
 
     /**
@@ -45,11 +73,11 @@ class CelulaController extends Controller
             return response()->json(['errors'=>$validator->errors()]);
         }
 
-        $user = Celula::create($request->all());
+        $set = Celula::create($request->all());
 
-        if ($user){
-            // event(new Registered($user));
-            return response()->json("Sucesso ao criar a celula ID: $user->id", 200);
+        if ($set){
+            // event(new Registered($set));
+            return response()->json("Sucesso ao criar a celula ID: $set->id", 200);
         }
 
         return response()->json('Ocorreu um erro', 500);
