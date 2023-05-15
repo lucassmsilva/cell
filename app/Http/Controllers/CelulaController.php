@@ -15,7 +15,7 @@ class CelulaController extends Controller
     {
         $sets = Celula::where(function ($query) use($request){
             if ($request->name){
-                $query->whereRaw('nome LIKE ?', formataWhereLike($request->nome));
+                $query->whereRaw('UPPER(nome) LIKE ?', formataWhereLike($request->nome));
             }
             if ($request->lider_id){
                 $query->where('lider_id', $request->lider_id);

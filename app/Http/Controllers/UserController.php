@@ -13,7 +13,7 @@ class UserController extends Controller
 
         $users = User::where(function ($query) use($request){
             if ($request->name){
-                $query->whereRaw('name LIKE ?', formataWhereLike($request->name));
+                $query->whereRaw('UPPER(name) LIKE ?', formataWhereLike($request->name));
             }
             if ($request->email){
                 $query->whereRaw('email LIKE ?', formataWhereLike($request->email));
