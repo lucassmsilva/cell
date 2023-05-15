@@ -33,9 +33,9 @@ class CelulaController extends Controller
             'nome' => 'required|string|max:255',
             'predio_id' => 'required|exists:predios,id',
             'data_nascimento' => 'required|date:Y-m-d H:i:s',
-            'lider_id' => 'required|exists:user,id',
-            'discipulador_id' => 'required|exists:user,id',
-            'pastor_id' => 'required|exists:user,id',
+            'lider_id' => 'required|exists:users,id',
+            'discipulador_id' => 'required|exists:users,id',
+            'pastor_id' => 'required|exists:users,id',
             'parent_id' => 'nullable|exists:celulas,id'
         ];
 
