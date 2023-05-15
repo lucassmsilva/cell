@@ -61,11 +61,11 @@ class CelulaRelatorioController extends Controller
             return response()->json(['errors'=>$validator->errors()]);
         }
 
-        $user = CelulaRelatorio::create($request->all());
+        $set = CelulaRelatorio::create($request->all());
 
-        if ($user){
-            // event(new Registered($user));
-            return response()->json("Sucesso ao criar a celula ID: $user->id", 200);
+        if ($set){
+            // event(new Registered($set));
+            return response()->json("Sucesso ao criar a celula ID: $set->id", 200);
         }
 
         return response()->json('Ocorreu um erro', 500);
